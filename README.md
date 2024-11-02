@@ -2,8 +2,9 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--adobe-eds--deemaho.aem.page/
+- Live: https://main--adobe-eds--deemaho.aem.live/
+- Develop Branch: https://develop--adobe-eds--deemaho.aem.live/
 
 ## Installation
 
