@@ -2,8 +2,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://[main--{repo}--{owner}.aem.page/](https://main--adobe-eds--deemaho.aem.page/)
-- Live: https://[main--{repo}--{owner}.aem.live/](https://main--adobe-eds--deemaho.aem.live/)
+- Preview: https://https://main--adobe-eds--deemaho.aem.page/
+- Live: https://https://main--adobe-eds--deemaho.aem.live/
 
 ## Documentation
 
