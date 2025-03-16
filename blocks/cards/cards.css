@@ -1,27 +1,32 @@
-.cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  grid-gap: 24px;
-}
+@layer blocks {
+	.cards {
+		display: grid;
+		gap: 17px;
+		grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+	}
+	
+	.card {
+		container-type: inline-size;
+		display: grid;
+		gap: 20px;
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
-}
+		& img {
+			inline-size: 100%;
+		}
+	}
+	
+	.card-content {
+		--title-font-size: var(--heading-font-size-s);
+		
+		display: grid;
+		gap: 10px;
+		
+		@container (width >= 64em) {
+			--title-font-size: var(--heading-font-size-m);
 
-.cards .cards-card-body {
-  margin: 16px;
-}
-
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+			align-content: start;
+			grid-column: 2;
+			padding-inline-start: 90px;
+		}
+	}
 }

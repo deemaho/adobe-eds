@@ -1,1 +1,5 @@
-/* stylelint-disable no-empty-source */
+@layer blocks {
+	.fragment-wrapper {
+		display: none;
+	}
+}

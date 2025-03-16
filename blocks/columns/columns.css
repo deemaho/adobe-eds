@@ -1,33 +1,27 @@
-.columns > div {
-  display: flex;
-  flex-direction: column;
-}
+@layer blocks {
+	.column-row {
+		align-items: start;
+		display: grid;
+		gap: 30px;
+		
+		@media (width >= 48em) {
+			grid-template-columns: var(--columns, repeat(auto-fit, minmax(var(--column-min-size, 375px), 1fr)));
+		}
 
-.columns img {
-  width: 100%;
-}
+		.align-center & {
+			align-items: center;
+		}
+	}
 
-.columns > div > div {
-  order: 1;
-}
+	.columns-33-66 {
+		--columns: 1fr 2fr;
+	}
 
-.columns > div > .columns-img-col {
-  order: 0;
-}
+	.columns-66-33 {
+		--columns: 2fr 1fr;
+	}
 
-.columns > div > .columns-img-col img {
-  display: block;
-}
-
-@media (width >= 900px) {
-  .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
-  }
-
-  .columns > div > div {
-    flex: 1;
-    order: unset;
-  }
+	.columns-33-33-33 {
+		--columns: repeat(3, 1fr);
+	}
 }

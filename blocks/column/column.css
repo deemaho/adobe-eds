@@ -1,0 +1,11 @@
+@layer blocks {
+	.column {
+		align-content: start;
+		display: grid;
+		gap: 20px;
+
+		& p + p {
+			margin-block-start: 0;
+		}
+	}
+}

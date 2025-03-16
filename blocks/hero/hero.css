@@ -1,37 +1,41 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
-}
+@layer blocks {
+	.hero {
+		align-items: center;
+		display: grid;
+		gap: 30px;
 
-.hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
+		@media (width >= 75em) {
+			gap: 130px;
+		}
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
+		&:has(img) {
+			@media (width >= 75em) {
+				grid-auto-flow: column;
+				grid-template-columns: 1fr;
+			}
 
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
+			& .hero-content {
+				text-align: right;
+			}
+		}
+	}
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
+	.hero-content {
+		display: grid;
+		gap: 10px;
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
+		@media (width >= 75em) {
+			gap: 24px;
+		}
+	}
+
+	.hero-image {
+		align-items: center;
+		display: grid;
+
+		& :where(picture, .button-container) {
+			grid-column: 1;
+			grid-row: 1;
+		}
+	}
 }

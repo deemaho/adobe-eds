@@ -2,7 +2,7 @@ import { readBlockContent, buildButton } from '../../scripts/utils.js';
 
 export default function decorate(block) {
 	const loopTargets = {
-		cards: ['image', 'title', 'content', 'button', 'button-label'],
+		cards: ['content', 'button', 'button-label'],
 	};
 
 	// Get block data from table
@@ -15,10 +15,10 @@ export default function decorate(block) {
 		const cardContainer = document.createElement('div');
 		const cardContent = document.createElement('div');
 
-		cardContainer.classList.add('card');
-		cardContent.classList.add('card-content');
-		cardContent.append(card.title, card.content, buildButton(card.button, card['button-label']));
-		cardContainer.append(card.image, cardContent);
+		cardContainer.classList.add('numbered-card');
+		cardContent.classList.add('numbered-card-content');
+		cardContent.append(card.content, buildButton(card.button, card['button-label']));
+		cardContainer.appendChild(cardContent);
 		block.appendChild(cardContainer);
 	});
 }

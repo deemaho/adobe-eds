@@ -1,0 +1,52 @@
+@layer blocks {
+	.form {
+		inline-size: min(100%, 538px);
+
+		& form {
+			display: grid;
+			gap: 20px;
+		}
+
+		& :where(input[type='text'], textarea) {
+			border: none;
+			background-color: light-dark(var(--color-gray-90), var(--color-muted-gray));
+			font-size: var(--body-font-size-l);
+			padding: 19px 18px;
+
+			&::placeholder {
+				color: light-dark(var(--color-gray-40), var(--color-white));
+			}
+		}
+
+		input[type='checkbox'] {
+			appearance: none;
+			background-color: light-dark(var(--color-gray-90), var(--color-muted-gray));
+			block-size: 28px;
+			inline-size: 28px;
+			position: relative;
+
+			&:checked {
+				--checkmark-opacity: 1;
+				--checkmark-scale: 1;
+			}
+			
+			&::before {
+				block-size: 24px;
+				content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>');
+				inline-size: 24px;
+				inset: 0;
+				margin: auto;
+				opacity: var(--checkmark-opacity, 0);
+				position: absolute;
+				scale: var(--checkmark-scale, .8);
+				transition: opacity var(--transition-time) ease-in-out, scale var(--transition-time) ease-in-out;
+			}
+		}
+	}
+
+	.form-group:has(input[type='checkbox']) {
+		align-items: start;
+		display: flex;
+		gap: 24px;
+	}
+}
