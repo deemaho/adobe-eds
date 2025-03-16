@@ -2,9 +2,16 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--adobe-eds--deemaho.aem.page/
-- Live: https://main--adobe-eds--deemaho.aem.live/
-- Develop Branch: https://develop--adobe-eds--deemaho.aem.live/
+- Preview: https://https://main--adobe-eds--deemaho.aem.page/
+- Live: https://https://main--adobe-eds--deemaho.aem.live/
+
+## Documentation
+
+Before using the aem-boilerplate, we recommand you to go through the documentation on https://www.aem.live/docs/ and more specifically:
+1. [Developer Tutorial](https://www.aem.live/developer/tutorial)
+2. [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
+3. [Web Performance](https://www.aem.live/developer/keeping-it-100)
+4. [Markup, Sections, Blocks, and Auto Blocking](https://www.aem.live/developer/markup-sections-blocks)
 
 ## Installation
 
