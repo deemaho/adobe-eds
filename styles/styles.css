@@ -21,6 +21,8 @@
 		--color-blue-gray: hsl(200deg 12% 60%);
 		--color-dark-gray: hsl(204deg 10% 16%);
 		--color-charcoal-gray: hsl(210deg 10% 12%);
+		--color-midnight-gray: hsl(204deg 12% 12%);
+		--color-violet: hsl(280deg 100% 50%);
 		--link-color: var(--color-black);
 		--text-color: var(--color-black);
 		--link-color-dark: var(--color-white);
@@ -180,9 +182,12 @@
 			outline: 2px solid var(--color-blue);
 		}
 
-		&:hover,
-		&[aria-current='page']:not(.header-logo) {
-			--link-color: var(--link-hover-color, var(--color-blue));
+		&:hover:not(.logo),
+		&[aria-current='page']:not(.logo) {
+			--link-color: light-dark(
+				var(--link-hover-color, var(--color-blue)),
+				var(--link-dark-hover-color, var(--color-violet))
+			);
 			--underline-alpha: 1;
 		}
 	}
@@ -314,7 +319,7 @@
 			--button-color: light-dark(var(--color-black), var(--color-white));
 
 			&:hover {
-				--button-color: var(--color-blue);
+				--button-color: light-dark(var(--color-blue), var(--color-violet));
 			}
 		}
 
@@ -328,8 +333,8 @@
 				&:hover,
 				&:focus-visible {
 					--button-color: var(--color-white);
-					--button-background-color: var(--color-blue);
-					--button-border-color: var(--color-blue);
+					--button-background-color: light-dark(var(--color-blue), var(--color-violet));
+					--button-border-color: light-dark(var(--color-blue), var(--color-violet));
 				}
 			}
 
@@ -348,11 +353,11 @@
 		}
 
 		&.secondary {
-			--button-border-color: light-dark(var(--color-black), var(--color-charcoal-gray));
-			--button-background-color: light-dark(var(--color-black), var(--color-charcoal-gray));
+			--button-border-color: light-dark(var(--color-black), var(--color-white));
+			--button-background-color: light-dark(var(--color-black), var(--color-white));
 			
 			&:not(.outline) {
-				--button-color: var(--color-white);
+				--button-color: light-dark(var(--color-white), var(--color-black));
 			}
 			
 			&.outline {
@@ -360,7 +365,7 @@
 
 				&:hover,
 				&:focus-visible {
-					--button-color: var(--color-white);
+					--button-color: light-dark(var(--color-white), var(--color-black));
 					--button-background-opacity: 100%;
 				}
 			}

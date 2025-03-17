@@ -52,7 +52,7 @@ export default async function decorate(block) {
 	block.textContent = '';
 
 	if (headerLogo) {
-		headerLogo.classList.add('header-logo');
+		headerLogo.classList.add('logo');
 		block.appendChild(headerLogo);
 	}
 

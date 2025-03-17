@@ -22,7 +22,7 @@ export default async function decorate(block) {
 	block.textContent = '';
 
 	[footerColumn1, footerColumn2].forEach((column) => column.classList.add('column'));
-	if (footerLogo) footerLogo.classList.add('footer-logo');
+	if (footerLogo) footerLogo.classList.add('logo');
 	if (socialMedia) {
 		socialMedia.role = 'list';
 		socialMedia.classList.add('social-media-links');

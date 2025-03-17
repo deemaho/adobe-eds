@@ -3,7 +3,7 @@
 		--animation-start: 25vh;
 		--animation-distance: 50vh;
 
-		background-color: var(--color-gray-95);
+		background-color: light-dark(var(--color-gray-95), var(--color-midnight-gray));
 		padding-block: 14px;
 		position: sticky;
 		top: 0;
@@ -16,12 +16,15 @@
 				100vh + var(--animation-start) + var(--animation-distance)
 			);
 			top: -58px;
-			background-color: transparent;
-			backdrop-filter: blur(0.35rem);
+			
+			@media (width >= 48em) {
+				background-color: transparent;
+			}
 		}
 	}
 
 	.header {
+		align-items: center;
 		display: grid;
 		grid-auto-flow: column;
 		justify-content: space-between;
@@ -31,7 +34,7 @@
 
 	.header-nav {
 		&[aria-hidden] {
-			background-color: var(--color-white);
+			background-color: light-dark(var(--color-gray-95), var(--color-midnight-gray));
 			inset: 100% 0 auto;
 			overflow: hidden;
 			padding-inline: 0.9375rem;
@@ -123,7 +126,7 @@
 		&::before,
 		&::after,
 		& span {
-			background-color: var(--color-black);
+			background-color: light-dark(var(--color-black), var(--color-white));
 			block-size: 0.125rem;
 			inline-size: 1.0625rem;
 			pointer-events: none;
@@ -140,7 +143,7 @@
 	@keyframes sticky-nav {
 		100% {
 			top: 0;
-			background-color: var(--color-gray-95);
+			background-color: light-dark(var(--color-gray-95), var(--color-midnight-gray));
 		}
 	}
 }

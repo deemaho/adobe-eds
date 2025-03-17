@@ -11,14 +11,17 @@ export default function decorate(block) {
 	// Clear initial block content
 	block.textContent = '';
 
-	blockData.cards.forEach((card) => {
+	blockData.cards.forEach((obj) => {
+		const card = document.createElement('div');
 		const cardContainer = document.createElement('div');
 		const cardContent = document.createElement('div');
 
-		cardContainer.classList.add('card');
+		card.classList.add('card');
+		cardContainer.classList.add('card-container');
 		cardContent.classList.add('card-content');
-		cardContent.append(card.title, card.content, buildButton(card.button, card['button-label']));
-		cardContainer.append(card.image, cardContent);
-		block.appendChild(cardContainer);
+		cardContent.append(obj.title, obj.content, buildButton(obj.button, obj['button-label']));
+		cardContainer.append(obj.image, cardContent);
+		card.appendChild(cardContainer);
+		block.appendChild(card);
 	});
 }

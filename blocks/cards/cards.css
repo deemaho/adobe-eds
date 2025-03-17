@@ -8,10 +8,21 @@
 	.card {
 		container-type: inline-size;
 		display: grid;
-		gap: 20px;
 
 		& img {
 			inline-size: 100%;
+		}
+	}
+
+	.card-container {
+		align-content: start;
+		display: grid;
+		gap: 20px;
+
+		@container (width >= 64em) {
+			--title-font-size: var(--heading-font-size-m);
+	
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 	
@@ -21,12 +32,8 @@
 		display: grid;
 		gap: 10px;
 		
-		@container (width >= 64em) {
-			--title-font-size: var(--heading-font-size-m);
-
-			align-content: start;
-			grid-column: 2;
-			padding-inline-start: 90px;
+		@container (width >= 85em) {
+			padding-inline-start: 80px;
 		}
 	}
 }

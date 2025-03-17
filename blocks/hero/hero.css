@@ -9,9 +9,8 @@
 		}
 
 		&:has(img) {
-			@media (width >= 75em) {
-				grid-auto-flow: column;
-				grid-template-columns: 1fr;
+			@media (width >= 62em) {
+				grid-template-columns: repeat(2, 1fr);
 			}
 
 			& .hero-content {
