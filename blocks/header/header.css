@@ -9,16 +9,18 @@
 		top: 0;
 
 		@supports (animation-timeline: view()) {
-			animation: sticky-nav linear forwards;
-			animation-timeline: view();
-			animation-range-start: calc(100vh + var(--animation-start));
-			animation-range-end: calc(
-				100vh + var(--animation-start) + var(--animation-distance)
-			);
-			top: -58px;
-			
-			@media (width >= 48em) {
-				background-color: transparent;
+			@media (prefers-reduced-motion: no-preference) {
+				animation: sticky-nav linear forwards;
+				animation-timeline: view();
+				animation-range-start: calc(100vh + var(--animation-start));
+				animation-range-end: calc(
+					100vh + var(--animation-start) + var(--animation-distance)
+				);
+				top: -58px;
+				
+				@media (width >= 48em) {
+					background-color: transparent;
+				}
 			}
 		}
 	}
