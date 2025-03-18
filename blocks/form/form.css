@@ -29,10 +29,6 @@
 		
 		& input[type='text'] {
 			padding: 9px 0 9px 5px;
-
-			&:autofill {
-				background: none !important;
-			}
 		}
 
 		& textarea {

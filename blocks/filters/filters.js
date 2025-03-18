@@ -26,38 +26,62 @@ function toggleFilters(button, content, init) {
 
 function renderSearchBox(renderOptions, isFirstRender) {
 	const {
-		query, refine, clear, widgetParams,
+		refine, clear, widgetParams,
 	} = renderOptions;
-	const { container } = widgetParams;
+	const { container, placeholder } = widgetParams;
 
 	if (isFirstRender) {
+		const label = document.createElement('label');
 		const input = document.createElement('input');
-		const button = document.createElement('button');
-		const icon = document.createElement('span');
+		const clearButton = document.createElement('button');
+		const clearIcon = document.createElement('span');
+		const submitButton = document.createElement('button');
+		const submitIcon = document.createElement('span');
 
-		icon.classList.add('icon', 'icon-close');
-		button.type = 'button';
-		button.setAttribute('aria-label', 'Clear Search');
-		button.appendChild(icon);
-		input.addEventListener('input', (event) => {
-			refine(event.target.value);
+		label.classList.add('sr-only');
+		label.htmlFor = placeholder.toLowerCase();
+		input.type = 'text';
+		input.name = placeholder.toLowerCase();
+		input.id = placeholder.toLowerCase();
+		input.placeholder = placeholder;
+		clearIcon.classList.add('icon', 'icon-close');
+		clearButton.hidden = true;
+		clearButton.type = 'button';
+		clearButton.classList.add('clear-search');
+		clearButton.setAttribute('aria-label', 'Clear Search');
+		clearButton.appendChild(clearIcon);
+		submitIcon.classList.add('icon', 'icon-search');
+		submitButton.classList.add('submit-search');
+		submitButton.type = 'button';
+		submitButton.setAttribute('aria-label', 'Submit Search');
+		submitButton.appendChild(submitIcon);
+
+		input.addEventListener('keyup', (event) => {
+			if (event.key === 'Enter') refine(event.target.value);
 		});
 
-		button.addEventListener('click', () => {
+		input.addEventListener('input', (event) => {
+			clearButton.hidden = event.target.value === '';
+		});
+
+		clearButton.addEventListener('click', () => {
+			clearButton.hidden = true;
+			input.value = '';
 			clear();
 		});
 
-		container.appendChild(input);
-		container.appendChild(button);
-	}
+		submitButton.addEventListener('click', () => {
+			if (input.value !== '') refine(input.value);
+		});
 
-	container.querySelector('input').value = query;
-	container.querySelector('button').hidden = query === '';
+		container.append(label, input, clearButton, submitButton);
+	}
 }
 
 function renderClearRefinements(renderOptions, isFirstRender) {
 	const { refine, widgetParams } = renderOptions;
 	const { container } = widgetParams;
+
 	if (isFirstRender) {
 		const button = document.createElement('button');
 
@@ -85,16 +109,31 @@ function renderHits(renderOptions, isFirstRender) {
 	items.forEach((hit) => {
 		const resultCard = document.createElement('div');
 		const resultContent = document.createElement('div');
+		const resultImage = document.createElement('img');
+		const resultLinkContainer = document.createElement('div');
 		const resultLink = document.createElement('a');
+		const resultLinkIcon = document.createElement('span');
+		const resultDescription = document.createElement('p');
 
-		resultCard.classList.add('result-card');
-		resultContent.classList.add('result-content');
-		resultLink.innerText = hit.pagename;
+		resultCard.classList.add('filter-result-card');
+		resultImage.width = '92';
+		resultImage.height = '92';
+		resultImage.src = hit.thumbnailImage;
+		resultContent.classList.add('filter-result-content');
+		resultLinkIcon.classList.add('icon', 'icon-arrow');
+		resultLink.innerText = hit.pageName;
 		resultLink.href = hit.url;
-		resultContent.appendChild(resultLink);
-		resultCard.appendChild(resultContent);
+		resultLink.classList.add('button');
+		resultLink.appendChild(resultLinkIcon);
+		resultLinkContainer.classList.add('button-container');
+		resultLinkContainer.appendChild(resultLink);
+		resultDescription.innerText = hit.description;
+		resultContent.append(resultLinkContainer, resultDescription);
+		resultCard.append(resultImage, resultContent);
 		container.appendChild(resultCard);
 	});
+
+	decorateIcons(container);
 }
 
 function renderRefinementList(renderOptions, isFirstRender) {
@@ -121,22 +160,31 @@ function renderRefinementList(renderOptions, isFirstRender) {
 
 	items.forEach((item) => {
 		const listItem = document.createElement('li');
+		const inputContainer = document.createElement('div');
 		const input = document.createElement('input');
+		const inputIcon = document.createElement('span');
 		const itemLabel = document.createElement('label');
 		const { label } = item;
 
+		inputContainer.classList.add('filter-checkbox');
 		input.type = 'checkbox';
 		input.name = attribute;
 		input.value = label;
 		input.id = label;
+		inputIcon.classList.add('icon', 'icon-checkmark');
+		inputContainer.append(input, inputIcon);
 		itemLabel.htmlFor = label;
 		itemLabel.innerText = String(label).charAt(0).toUpperCase() + String(label).slice(1);
-		listItem.append(input, itemLabel);
+		listItem.append(inputContainer, itemLabel);
 		containerList.appendChild(listItem);
 
 		if (item.isRefined) {
 			input.checked = true;
 		}
+
+		input.addEventListener('click', () => {
+			refine(input.value);
+		});
 	});
 
 	if (items.length === 0 && !isFirstRender) {
@@ -145,20 +193,15 @@ function renderRefinementList(renderOptions, isFirstRender) {
 		noFilters.classList.add('no-filters');
 		noFilters.innerText = 'No filters to apply';
 		container.appendChild(noFilters);
-		return;
 	}
 
-	container.querySelectorAll('input').forEach((input) => {
-		input.addEventListener('click', () => {
-			refine(input.value);
-		});
-	});
+	decorateIcons(container);
 }
 
 export default function decorate(block) {
 	// eslint-disable-next-line
 	const search = instantsearch({
-		indexName: 'demo_EDS',
+		indexName: 'Sample Index',
 		searchClient,
 	});
 	const blockData = readBlockContent(block);
@@ -221,6 +264,7 @@ export default function decorate(block) {
 	search.addWidgets([
 		customSearchBox({
 			container: filtersSearch,
+			placeholder: 'Search',
 		}),
 		customClearRefinements({
 			container: filtersClear,
