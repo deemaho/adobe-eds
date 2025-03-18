@@ -22,10 +22,21 @@ export default async function decorate(block) {
 	block.textContent = '';
 
 	[footerColumn1, footerColumn2].forEach((column) => column.classList.add('column'));
-	if (footerLogo) footerLogo.classList.add('logo');
+	if (blockData['logo-aria']) footerLogo.setAttribute('aria-label', blockData['logo-aria'].textContent);
+	footerLogo.classList.add('logo');
 	if (socialMedia) {
 		socialMedia.role = 'list';
 		socialMedia.classList.add('social-media-links');
+		socialMedia.querySelectorAll('a').forEach((link) => {
+			const iconName = Array.from(link.querySelector('.icon').classList)
+				.find((c) => c.startsWith('icon-'))
+				.substring(5);
+
+			link.setAttribute(
+				'aria-label',
+				`Go to ${String(iconName).charAt(0).toUpperCase() + String(iconName).slice(1)} page`,
+			);
+		});
 	}
 	footerColumn1.append(footerLogo, socialMedia);
 	if (footerLinks) {

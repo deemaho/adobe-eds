@@ -35,7 +35,7 @@ function buildTextarea(values) {
 
 	textarea.id = toClassName(values.formName);
 	textarea.name = toClassName(values.formName);
-	textarea.placeholder = values.formName;
+	if (values.placeholder) textarea.placeholder = values.placeholder;
 
 	return textarea;
 }
@@ -46,7 +46,7 @@ function buildInput(values) {
 	input.type = values.formType.toLowerCase();
 	input.id = toClassName(values.formName);
 	input.name = toClassName(values.formName);
-	input.placeholder = values.formName;
+	if (values.placeholder) input.placeholder = values.placeholder;
 	if (values.formValue) input.value = values.formValue;
 	if (values.formMode) input.setAttribute('inputmode', values.formMode);
 
@@ -86,19 +86,26 @@ export default async function decorate(block) {
 		const formErrorMessage = document.createElement('span');
 		const formValues = {
 			formType: data.Type,
-			formMode: data['Input Mode'],
+			formMode: data['Input mode'],
 			formName: data.Name,
 			formValue: data.Value,
 		};
 		const formInput = buildFormField(formValues, data.Options);
 
+		if (formValues.formType === 'checkbox') {
+			formGroup.classList.add('form-checkbox');
+		} else if (formValues.formType === 'textarea') {
+			formGroup.classList.add('form-textarea');
+		} else {
+			formGroup.classList.add('form-input');
+		}
+		if (data.Style) formGroup.classList.add(toClassName(data.Style));
 		if (data.Style) formGroup.classList.add(toClassName(data.Style));
 		if (data.Required) formInput.required = true;
 		if (data.Pattern) formInput.pattern = data.Pattern;
 		if (data.Autofocus) formInput.autofocus = true;
 		formGroup.classList.add('form-group');
 		formLabel.htmlFor = toClassName(data.Name);
-		if (formValues.formType !== 'checkbox') formLabel.classList.add('sr-only');
 		formLabel.innerText = data.Name;
 		formField.classList.add('form-field');
 		formField.appendChild(formInput);
@@ -107,8 +114,17 @@ export default async function decorate(block) {
 			formErrorMessage.id = `${data.Name}-error`;
 			formField.appendChild(formErrorMessage);
 		}
-		if (formValues.formType === 'checkbox') formGroup.append(formField, formLabel);
-		else formGroup.append(formLabel, formField);
+		if (formValues.formType === 'checkbox') {
+			const formPolicy = document.createElement('div');
+			const labelIcon = document.createElement('span');
+			const formPolicyCopy = document.createElement('p');
+
+			formLabel.appendChild(labelIcon);
+			formPolicy.classList.add('form-policy');
+			formPolicyCopy.innerText = data.Content;
+			formPolicy.append(formLabel, formPolicyCopy);
+			formGroup.append(formField, formPolicy);
+		} else formGroup.append(formLabel, formField);
 		form.appendChild(formGroup);
 
 		formInput.addEventListener('keydown', () => {

@@ -15,7 +15,7 @@
 	}
 
 	.card-container {
-		align-content: start;
+		align-items: start;
 		display: grid;
 		gap: 20px;
 

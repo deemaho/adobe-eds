@@ -92,6 +92,7 @@
 	}
 
 	html {
+		block-size: 100%;
 		color: var(--text-color);
 		font-family: var(--body-font-family), var(--fallback-fonts);
 		line-height: 1.5;
@@ -101,8 +102,11 @@
 
 	body {
 		background-color: light-dark(var(--color-white), var(--color-dark-gray));
+		display: grid;
 		font-size: var(--body-font-size-m);
+		grid-template-rows: auto 1fr auto;
 		margin: 0;
+		min-block-size: 100%;
 	
 		&:not(.appear) {
 			visibility: hidden;
@@ -340,15 +344,29 @@
 
 			&.outline {
 				--button-background-opacity: 0%;
+
+				&:hover,
+				&:focus-visible {
+					--button-background-opacity: 100%;
+				}
 			}
 		}
 
 		&.primary {
 			--button-border-color: light-dark(var(--color-white), var(--color-dark-gray));
-			--button-color: light-dark(var(--color-black), var(--color-white));
-
+			--button-background-color: light-dark(var(--color-white), var(--color-dark-gray));
+			
 			&:not(.outline) {
-				--button-background-color: light-dark(var(--color-white), var(--color-dark-gray));
+				--button-color: light-dark(var(--color-black), var(--color-white));
+			}
+
+			&.outline {
+				--button-color: light-dark(var(--color-white), var(--color-black));
+
+				&:hover,
+				&:focus-visible {
+					--button-color: light-dark(var(--color-black), var(--color-white));
+				}
 			}
 		}
 
@@ -366,7 +384,6 @@
 				&:hover,
 				&:focus-visible {
 					--button-color: light-dark(var(--color-white), var(--color-black));
-					--button-background-opacity: 100%;
 				}
 			}
 		}

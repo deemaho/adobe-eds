@@ -53,6 +53,7 @@ export default async function decorate(block) {
 
 	if (headerLogo) {
 		headerLogo.classList.add('logo');
+		if (blockData['logo-aria']) headerLogo.setAttribute('aria-label', blockData['logo-aria'].textContent);
 		block.appendChild(headerLogo);
 	}
 

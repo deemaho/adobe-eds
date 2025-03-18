@@ -1,0 +1,22 @@
+@layer blocks {
+	.image-cards {
+		display: grid;
+		gap: 23px;
+		grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+
+		& img {
+			inline-size: 100%;
+		}
+	}
+
+	.image-card {
+		position: relative;
+
+		& .button-container {
+			left: 0;
+			position: absolute;
+			top: 50%;
+			translate: 0 -50%;
+		}
+	}
+}

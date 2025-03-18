@@ -6,19 +6,40 @@
 			display: grid;
 			gap: 20px;
 		}
+	}
+
+	.form-group {
+		display: grid;
+
+		& label {
+			color: light-dark(
+				hsl(from var(--color-gray-40) h s l / var(--label-alpha, 100%)),
+				hsl(from var(--color-white) h s l / var(--label-alpha, 100%))
+			);
+			font-size: var(--body-font-size-l);
+			text-transform: uppercase;
+		}
 
 		& :where(input[type='text'], textarea) {
 			border: none;
-			background-color: light-dark(var(--color-gray-90), var(--color-muted-gray));
+			background: none;
 			font-size: var(--body-font-size-l);
-			padding: 19px 18px;
+			outline: none;
+		}
+		
+		& input[type='text'] {
+			padding: 9px 0 9px 5px;
 
-			&::placeholder {
-				color: light-dark(var(--color-gray-40), var(--color-white));
+			&:autofill {
+				background: none !important;
 			}
 		}
 
-		input[type='checkbox'] {
+		& textarea {
+			padding: 8px 18px 19px 0;
+		}
+
+		& input[type='checkbox'] {
 			appearance: none;
 			background-color: light-dark(var(--color-gray-90), var(--color-muted-gray));
 			block-size: 28px;
@@ -44,7 +65,48 @@
 		}
 	}
 
-	.form-group:has(input[type='checkbox']) {
+	.form-input,
+	.form-textarea {
+		background-color: light-dark(var(--color-gray-90), var(--color-muted-gray));
+
+		&:focus-within {
+			outline: 1px auto Highlight;
+			outline: 1px auto -webkit-focus-ring-color;
+		}
+	}
+
+	.form-input {
+		align-items: center;
+		padding: 10px 18px;
+		grid-template-columns: 100px 1fr;
+
+		&:has(input:valid) {
+			--label-alpha: 60%;
+		}
+
+		& .form-field {
+			position: relative;
+			
+			&::before {
+				background-color: light-dark(var(--color-gray-40), var(--color-white));
+				content: '';
+				inline-size: 1px;
+				inset: 0 auto 0 -5px;
+				position: absolute;
+			}
+		}
+	}
+
+	.form-textarea {
+		padding-inline-start: 18px;
+		padding-block-start: 19px;
+
+		&:has(textarea:valid) {
+			--label-alpha: 60%;
+		}
+	}
+
+	.form-checkbox {
 		align-items: start;
 		display: flex;
 		gap: 24px;
