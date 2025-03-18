@@ -23,15 +23,10 @@
 		--color-charcoal-gray: hsl(210deg 10% 12%);
 		--color-midnight-gray: hsl(204deg 12% 12%);
 		--color-violet: hsl(280deg 100% 50%);
-		--link-color: var(--color-black);
-		--text-color: var(--color-black);
+		--link-color: light-dark(var(--color-black), var(--color-white));
+		--text-color: light-dark(var(--color-black), var(--color-white));
 		--link-color-dark: var(--color-white);
 		--text-color-dark: var(--color-white);
-
-		@media (prefers-color-scheme: dark) {
-			--link-color: var(--color-white);
-			--text-color: var(--color-white);
-		}
 
 		/* Fonts */
 		--body-font-family: 'roboto';

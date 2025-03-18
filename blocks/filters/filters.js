@@ -119,6 +119,7 @@ function renderHits(renderOptions, isFirstRender) {
 		resultImage.width = '92';
 		resultImage.height = '92';
 		resultImage.src = hit.thumbnailImage;
+		resultImage.role = 'presentation';
 		resultContent.classList.add('filter-result-content');
 		resultLinkIcon.classList.add('icon', 'icon-arrow');
 		resultLink.innerText = hit.pageName;
