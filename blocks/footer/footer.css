@@ -9,19 +9,43 @@
 
 	.footer {
 		display: grid;
-		grid-auto-flow: column;
+		gap: 50px;
 		margin-inline: auto;
 		max-inline-size: min(100% - var(--container-gutter, 0.9375rem) * 2, var(--max-width, 68rem));
+		
+		@media (width >= 48em) {
+			gap: 200px;
+			grid-template-columns: auto 1fr;
+		}
+	}
+
+	.footer-logo-container {
+		text-align: center;
+		margin-block-end: 40px;
+
+		& p {
+			font-size: var(--body-font-size-xs);
+			text-transform: uppercase;
+		}
+
+		& strong {
+			font-size: var(--body-font-size-m);
+		}
 	}
 
 	.social-media-links {
 		display: flex;
 		gap: 20px;
+		justify-content: center;
 	}
 
 	.footer-links {
 		display: grid;
 		gap: 40px;
+
+		@media (width < 48em) {
+			justify-content: center;
+		}
 
 		& li {
 			display: flex;

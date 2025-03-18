@@ -16,14 +16,17 @@ export default async function decorate(block) {
 	const socialMedia = blockData['social-media'];
 	const footerLinks = blockData.links;
 	const footerColumn1 = document.createElement('div');
+	const logoContainer = document.createElement('div');
 	const footerColumn2 = document.createElement('div');
 
 	// Clear initial block content
 	block.textContent = '';
 
 	[footerColumn1, footerColumn2].forEach((column) => column.classList.add('column'));
+	logoContainer.classList.add('footer-logo-container');
 	if (blockData['logo-aria']) footerLogo.setAttribute('aria-label', blockData['logo-aria'].textContent);
 	footerLogo.classList.add('logo');
+	logoContainer.append(footerLogo, blockData.content);
 	if (socialMedia) {
 		socialMedia.role = 'list';
 		socialMedia.classList.add('social-media-links');
@@ -38,7 +41,7 @@ export default async function decorate(block) {
 			);
 		});
 	}
-	footerColumn1.append(footerLogo, socialMedia);
+	footerColumn1.append(logoContainer, socialMedia);
 	if (footerLinks) {
 		footerLinks.role = 'list';
 		footerLinks.classList.add('footer-links');

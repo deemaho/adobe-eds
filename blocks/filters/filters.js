@@ -26,7 +26,7 @@ function toggleFilters(button, content, init) {
 
 function renderSearchBox(renderOptions, isFirstRender) {
 	const {
-		query, refine, clear, isSearchStalled, widgetParams,
+		query, refine, clear, widgetParams,
 	} = renderOptions;
 	const { container } = widgetParams;
 
@@ -87,7 +87,6 @@ function renderHits(renderOptions, isFirstRender) {
 		const resultContent = document.createElement('div');
 		const resultLink = document.createElement('a');
 
-		console.log(hit);
 		resultCard.classList.add('result-card');
 		resultContent.classList.add('result-content');
 		resultLink.innerText = hit.pagename;

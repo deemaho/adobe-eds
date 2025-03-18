@@ -39,6 +39,7 @@
 		--material-icons: 'Material Icons';
 
 		/* Rem sizes */
+		--size-10: 0.625rem;
 		--size-12: 0.75rem;
 		--size-14: 0.875rem;
 		--size-16: 1rem;
@@ -54,6 +55,7 @@
 		--body-font-size-l: var(--size-16);
 		--body-font-size-m: var(--size-14);
 		--body-font-size-s: var(--size-12);
+		--body-font-size-xs: var(--size-10);
 	
 		/* heading sizes */
 		--heading-font-size-l: var(--size-60);
