@@ -10,6 +10,7 @@
 	}
 
 	.image-card {
+		isolation: isolate;
 		position: relative;
 
 		& .button-container {
