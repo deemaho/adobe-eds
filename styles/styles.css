@@ -334,7 +334,7 @@
 			&:not(.outline) {
 				&:hover,
 				&:focus-visible {
-					--button-color: var(--color-white);
+					--button-color: light-dark(var(--color-white), var(--color-black));
 					--button-background-color: light-dark(var(--color-blue), var(--color-teal));
 					--button-border-color: light-dark(var(--color-blue), var(--color-teal));
 				}
@@ -355,7 +355,7 @@
 			--button-background-color: light-dark(var(--color-white), var(--color-dark-gray));
 			
 			&:not(.outline) {
-				--button-color: light-dark(var(--color-black), var(--color-black));
+				--button-color: light-dark(var(--color-black), var(--color-white));
 			}
 
 			&.outline {
