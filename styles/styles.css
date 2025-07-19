@@ -355,7 +355,7 @@
 			--button-background-color: light-dark(var(--color-white), var(--color-dark-gray));
 			
 			&:not(.outline) {
-				--button-color: light-dark(var(--color-black), var(--color-white));
+				--button-color: light-dark(var(--color-black), var(--color-black));
 			}
 
 			&.outline {
