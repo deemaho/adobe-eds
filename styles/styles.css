@@ -23,6 +23,7 @@
 		--color-charcoal-gray: hsl(210deg 10% 12%);
 		--color-midnight-gray: hsl(204deg 12% 12%);
 		--color-violet: hsl(280deg 100% 50%);
+		--color-teal: hsl(145deg 100% 50%);
 		--link-color: light-dark(var(--color-black), var(--color-white));
 		--text-color: light-dark(var(--color-black), var(--color-white));
 		--link-color-dark: var(--color-white);
@@ -187,7 +188,7 @@
 		&[aria-current='page']:not(.logo) {
 			--link-color: light-dark(
 				var(--link-hover-color, var(--color-blue)),
-				var(--link-dark-hover-color, var(--color-violet))
+				var(--link-dark-hover-color, var(--color-teal))
 			);
 			--underline-alpha: 1;
 		}
@@ -320,7 +321,7 @@
 			--button-color: light-dark(var(--color-black), var(--color-white));
 
 			&:hover {
-				--button-color: light-dark(var(--color-blue), var(--color-violet));
+				--button-color: light-dark(var(--color-blue), var(--color-teal));
 			}
 		}
 
@@ -334,8 +335,8 @@
 				&:hover,
 				&:focus-visible {
 					--button-color: var(--color-white);
-					--button-background-color: light-dark(var(--color-blue), var(--color-violet));
-					--button-border-color: light-dark(var(--color-blue), var(--color-violet));
+					--button-background-color: light-dark(var(--color-blue), var(--color-teal));
+					--button-border-color: light-dark(var(--color-blue), var(--color-teal));
 				}
 			}
 
